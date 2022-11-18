@@ -12,3 +12,6 @@ class Posting:
 
     def get_fields(self):
         return self.fields
+
+    def __eq__(self, other):
+        return self.docid == other.docid

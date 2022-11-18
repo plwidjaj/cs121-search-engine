@@ -24,18 +24,27 @@ def report(inverted_index):
     # The number of unique tokens;
     # The total size (in KB) of your index on disk.
     # Note for the developer option: at this time, you do not need to have the optimized index, but you may save time if you do.
-    filename = 'inv_index' 
-    filesize = os.path.getsize(filename+'.db')
+    filename = 'inv_index_dev' 
+    #filesize = os.path.getsize(filename+'.db')
     inv_index = shelve.open(filename)
     print(f"Number of documents indexed: {inverted_index}")
     print(f"Number of unique tokens: {len(inv_index)}")
-    print(f'Total size of index on disk: {filesize} ')
+    #print(f'Total size of index on disk: {filesize} ')
     inv_index.close()
+
+def save_docids(docids):
+    filename = 'docids_dev'
+    docids_file = shelve.open(filename)
+    for k, v in docids.items():
+        docids_file[str(k)] = v
+    docids_file.close()
 
 def execute():
     D = "../DEV"
     docids = map_docid(D)
-    
+    #save_docids(docids)
+    print(len(docids))
+    print(type(docids))
     inverted_index = index.build_index(docids)
     report(inverted_index)
 
