@@ -5,7 +5,7 @@ import time
 import json
 import math
 
-FILENAME = 'inv_index_dev'
+FILENAME = '../backup/inv_index_dev'
 
 def get_query():
     '''
@@ -27,21 +27,23 @@ def get_top_docids(query, inv_index, num_of_docs):
     docs_scores = defaultdict(int)
     common_docids = set()
     idfs = dict()
+    term_postings = dict()
 
     if len(query) != 0:
         try:
-            #Calculate idf for each term
+            #Calculate idf for each term and load postings into memory
             for q in query:
-                idfs[q] = math.log(num_of_docs, len(inv_index[q].keys()))
+                term_postings[q] = inv_index[q]
+                idfs[q] = math.log(num_of_docs, len(term_postings[q].keys()))
             
-            query.sort(key=lambda q: len(inv_index[q].keys()))
+            query.sort(key=lambda q: len(term_postings[q].keys()))
 
-            common_docids = set(inv_index[query[0]].keys())
+            common_docids = set(term_postings[query[0]].keys())
             for i in range(1, len(query)):
-                common_docids = common_docids.intersection(set(inv_index[query[i]].keys()))
+                common_docids = common_docids.intersection(set(term_postings[query[i]].keys()))
             for id in common_docids:
                 for q in query:
-                    docs_scores[id] += (1 + math.log(inv_index[q][id])) * idfs[q]
+                    docs_scores[id] += (1 + math.log(term_postings[q][id])) * idfs[q]
         except:
             print('Query not found in index')
 
