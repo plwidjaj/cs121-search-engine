@@ -22,4 +22,4 @@ learning
 coding language
 minor
 
-In order to try and improve the effiency of the queries with bad efficiency, we decided to sort the query terms in ascending order so that the search engine would caluclate smaller set intersections first.
+In order to try and improve the effiency of the queries with bad efficiency, we decided to sort the query terms in ascending order so that the search engine would calculate smaller set intersections first. Loading the postings of query terms into memory instead of accessing the disk repeatedly during scoring greatly improved the time.
