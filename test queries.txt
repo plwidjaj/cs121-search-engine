@@ -1,0 +1,25 @@
+GOOD QUERIES:
+cristina lopez 
+labor practice
+fair wages
+alex thornton
+disneyland
+icssc
+guided workshop
+pros and cons of artificial intelligence
+thanksgiving
+information retrieval cristina lopez
+
+QUERIES WITH BAD PERFORMANCE EFFIENCY: 
+alumni spotlight 
+terms and conditions
+among us
+introduction to machine learning
+wics
+donald bren
+staff
+learning
+coding language
+minor
+
+In order to try and improve the effiency of the queries with bad efficiency, we decided to sort the query terms in ascending order so that the search engine would caluclate smaller set intersections first.
